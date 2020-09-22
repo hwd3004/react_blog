@@ -16,3 +16,15 @@ body {
   font-weight: 600;
   font-size: 20px;
 }
+
+.list {
+  margin-top: 30px;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.list > h3,
+.list > p {
+  margin-bottom: 10px;
+}
