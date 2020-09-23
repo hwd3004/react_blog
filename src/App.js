@@ -6,19 +6,47 @@ function App() {
   let [제목, 제목변경] = useState(["NodeJS", "ReactJS", "Django"]);
   let [따봉, 따봉변경] = useState(0);
 
+  let [글제목, 글제목변경] = useState([
+    { title: "NodeJS" },
+    { title: "ReactJS" },
+    { title: "Django" },
+  ]);
+
+  글제목.forEach((key) => {
+    key.good = 0;
+    console.log(key);
+  });
+
+  console.log(글제목[0]);
+
+  let [modal, modal변경] = useState(false);
+
+  let 모달버튼 = () => {
+    if (modal === false) {
+      modal변경(true);
+    } else {
+      modal변경(false);
+    }
+  };
+
+  let 반복된UI = () => {
+    let 어레이 = [];
+
+    for (let index = 0; index < 어레이.length; index++) {
+      어레이.push(<div>어레이</div>);
+    }
+  };
+
   return (
     <div className="App">
       <div className="black-nav">
         <div>개발 Blog</div>
       </div>
 
-      <div className="list">
+      {/* <div className="list">
         <h3>
           {제목[0]}
           <span
-            // onClick={() => {
-            //   console.log('1');
-            // }}
             onClick={() => {
               따봉변경(따봉 + 1);
             }}
@@ -29,21 +57,41 @@ function App() {
         </h3>
         <p>9월 22일 발행</p>
         <hr />
-      </div>
+      </div> */}
 
-      <div className="list">
-        <h3> {제목[1]} </h3>
-        <p>9월 22일 발행</p>
-        <hr />
-      </div>
+      {/* {제목.map((글index) => {
+        return (
+          <div className="list">
+            <h3> {글index} </h3>
+            <p>9월 22일 발행</p>
+            <hr />
+          </div>
+        );
+      })} */}
 
-      <div className="list">
-        <h3> {제목[2]} </h3>
-        <p>9월 22일 발행</p>
-        <hr />
-      </div>
+      {글제목.map((index) => {
+        return (
+          <div className="list">
+            <h3>
+              {index.title}
+              <span
+                onClick={() => {
+                  console.log(index);
+                  글제목변경(index.good + 1);
+                }}
+              >
+                👍{index.good}
+              </span>
+            </h3>
+            <p>9월 22일 발행</p>
+            <hr />
+          </div>
+        );
+      })}
 
-      <Modal />
+      <button onClick={모달버튼}>버튼</button>
+
+      {modal === true ? <Modal></Modal> : null}
     </div>
   );
 }
