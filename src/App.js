@@ -3,52 +3,14 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  // let [글제목, 글제목변경] = useState("남자 코트 추천");
-  // let [글제목2, 글제목변경2] = useState("남자 코트 추천2");
-  // let [글제목, 글제목변경] = useState(["남자 코트 추천", "강남 우동 맛집"]);
-  // let posts = "분당 맛집";
-
   let [제목, 제목변경] = useState(["NodeJS", "ReactJS", "Django"]);
-
   let [따봉, 따봉변경] = useState(0);
-
-  const 제목바꾸기 = () => {
-    // 제목변경(["Python", "ReactJS", "Django"]);
-    // 무식하지만 쉬운 방법
-
-    // const newArray = 제목;
-    // state 직접 건들지말고 복사본을 만들어서 수정
-    // 근데 이렇게 하면 복사가 아니라 값 공유임
-    // reference data type(참조형 데이터 타입) 특징
-
-    const newArray = [...제목];
-    // deep copy는 서로 값 공유가 일어나지않고,
-    // 완전히 새로운 복사본을 하나 생성
-    // ...(스프레드 오퍼레이터)는 es6 문법
-    // 오브젝트도 {...제목} 이런식으로 하면 됨
-    // 이해 안되면, 그냥 외워서 쓰면 된다.
-
-    newArray[0] = "Python";
-
-    제목변경(newArray);
-  };
-
-  const 정렬 = () => {
-    let newArray = [...제목];
-
-    newArray = newArray.sort();
-
-    제목변경(newArray);
-  };
 
   return (
     <div className="App">
       <div className="black-nav">
         <div>개발 Blog</div>
       </div>
-
-      <button onClick={제목바꾸기}>버튼</button>
-      <button onClick={정렬}>정렬</button>
 
       <div className="list">
         <h3>
@@ -80,8 +42,30 @@ function App() {
         <p>9월 22일 발행</p>
         <hr />
       </div>
+
+      <Modal />
     </div>
   );
 }
+
+let Modal = () => {
+  return (
+    <div className="modal">
+      <h2>제목</h2>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  );
+};
+// 컴포넌트로 만들어서 하는게 좋다
+
+// 컴포넌트로 만들면 좋은지 판단하는 기준
+// 반복출현하는 HTML 덩어리들
+// 자주 변경되는 HTML UI들
+// 다른 페이지 만들때도 컴포넌트로 만듬
+
+// 컴포넌트 단점
+// state 쓸 때 복잡해짐
+// 상위 컴포넌트에서 만든 state 쓰려면 props 문법 이용해야함
 
 export default App;
