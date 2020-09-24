@@ -35,9 +35,50 @@ html이 새로고침 없이 스무스하게 변경됨.
 
 let Modal = (props) => {
 return (
+
 <div className="modal">
 {(console.log("props"), console.log(props))}
 <h2>{props.글제목[0]}</h2>
+<p>날짜</p>
+<p>상세내용</p>
+</div>
+);
+};
+
+---
+
+# 8. prps를 응용한 상세페이지 만들기
+
+let [누른제목, 누른제목변경] = useState(0);
+
+{글제목.map((data, index) => {
+return (
+
+<div className="list">
+<h3
+onClick={() => {
+누른제목변경(index);
+}} >
+{data}
+<span
+onClick={() => {
+console.log(글제목[index]);
+}} >
+👍{따봉}
+</span>
+</h3>
+<p>9월 22일 발행</p>
+<hr />
+</div>
+);
+})}
+
+let Modal = (props) => {
+return (
+
+<div className="modal">
+{(console.log("props"), console.log(props))}
+<h2>{props.글제목[props.누른제목]}</h2>
 <p>날짜</p>
 <p>상세내용</p>
 </div>

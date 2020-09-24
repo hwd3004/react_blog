@@ -6,6 +6,8 @@ function App() {
   let [글제목, 글제목변경] = useState(["NodeJS", "ReactJS", "Django"]);
   let [따봉, 따봉변경] = useState(0);
 
+  let [누른제목, 누른제목변경] = useState(0);
+
   console.log(글제목[0]);
 
   let [modal, modal변경] = useState(false);
@@ -35,7 +37,11 @@ function App() {
       {글제목.map((data, index) => {
         return (
           <div className="list">
-            <h3>
+            <h3
+              onClick={() => {
+                누른제목변경(index);
+              }}
+            >
               {data}
               <span
                 onClick={() => {
@@ -51,7 +57,28 @@ function App() {
         );
       })}
 
-      {/* <button onClick={모달버튼}>버튼</button> */}
+      <button
+        onClick={() => {
+          누른제목변경(0);
+        }}
+      >
+        버튼1
+      </button>
+      <button
+        onClick={() => {
+          누른제목변경(1);
+        }}
+      >
+        버튼2
+      </button>
+      <button
+        onClick={() => {
+          누른제목변경(2);
+        }}
+      >
+        버튼3
+      </button>
+
       <button
         onClick={() => {
           modal변경(!modal);
@@ -60,7 +87,9 @@ function App() {
         버튼
       </button>
 
-      {modal === true ? <Modal 글제목={글제목}></Modal> : null}
+      {modal === true ? (
+        <Modal 글제목={글제목} 누른제목={누른제목}></Modal>
+      ) : null}
     </div>
   );
 }
@@ -69,7 +98,7 @@ let Modal = (props) => {
   return (
     <div className="modal">
       {(console.log("props"), console.log(props))}
-      <h2>{props.글제목[0]}</h2>
+      <h2>{props.글제목[props.누른제목]}</h2>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
