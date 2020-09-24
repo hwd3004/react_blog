@@ -2,6 +2,26 @@ import React from "react";
 import { useState } from "react";
 import "./App.css";
 
+class Profile extends React.Component {
+  constructor() {
+    super();
+    this.state = { name: "Kim", age: 30 };
+  }
+
+  changeName = () => {
+    this.setState({ name: "Park" });
+  };
+
+  render() {
+    return (
+      <div>
+        <h3>저는 {this.state.name}입니다.</h3>
+        <button onClick={this.changeName}>버튼</button>
+      </div>
+    );
+  }
+}
+
 function App() {
   let [글제목, 글제목변경] = useState(["NodeJS", "ReactJS", "Django"]);
   let [따봉, 따봉변경] = useState(0);
@@ -35,6 +55,8 @@ function App() {
       <div className="black-nav">
         <div>개발 Blog</div>
       </div>
+
+      <Profile></Profile>
 
       {글제목.map((data, index) => {
         return (
