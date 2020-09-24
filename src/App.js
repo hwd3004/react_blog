@@ -8,6 +8,8 @@ function App() {
 
   let [누른제목, 누른제목변경] = useState(0);
 
+  let [입력값, 입력값변경] = useState("");
+
   console.log(글제목[0]);
 
   let [modal, modal변경] = useState(false);
@@ -36,7 +38,7 @@ function App() {
 
       {글제목.map((data, index) => {
         return (
-          <div className="list">
+          <div className="list" key={index}>
             <h3
               onClick={() => {
                 누른제목변경(index);
@@ -56,6 +58,13 @@ function App() {
           </div>
         );
       })}
+
+      <input
+        onChange={(event) => {
+          // console.log(event.target.value);
+          입력값변경(event.target.value);
+        }}
+      ></input>
 
       <button
         onClick={() => {
