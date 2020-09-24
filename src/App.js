@@ -25,7 +25,7 @@ function App() {
   let 반복된UI = () => {
     let 어레이 = [];
 
-    for (let index = 0; index < 어레이.length; index++) {
+    for (let index = 0; index < 5; index++) {
       어레이.push(<div>어레이</div>);
     }
   };
@@ -58,36 +58,31 @@ function App() {
           </div>
         );
       })}
-
-      <input
+      {/* <input
         onChange={(event) => {
           // console.log(event.target.value);
           입력값변경(event.target.value);
         }}
-      ></input>
+      ></input> */}
+      <div className="publish">
+        <input
+          onChange={(event) => {
+            입력값변경(event.target.value);
+          }}
+        ></input>
+        <button
+          onClick={() => {
+            // console.log(입력값);
+            let 글제목카피 = [...글제목];
 
-      <button
-        onClick={() => {
-          누른제목변경(0);
-        }}
-      >
-        버튼1
-      </button>
-      <button
-        onClick={() => {
-          누른제목변경(1);
-        }}
-      >
-        버튼2
-      </button>
-      <button
-        onClick={() => {
-          누른제목변경(2);
-        }}
-      >
-        버튼3
-      </button>
-
+            글제목카피.unshift(입력값);
+            // 배열 맨앞에 자료 하나 추가
+            글제목변경(글제목카피);
+          }}
+        >
+          저장
+        </button>
+      </div>
       <button
         onClick={() => {
           modal변경(!modal);
@@ -95,7 +90,6 @@ function App() {
       >
         버튼
       </button>
-
       {modal === true ? (
         <Modal 글제목={글제목} 누른제목={누른제목}></Modal>
       ) : null}
