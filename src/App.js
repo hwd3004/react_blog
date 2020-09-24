@@ -7,15 +7,15 @@ function App() {
   let [따봉, 따봉변경] = useState(0);
 
   let [글제목, 글제목변경] = useState([
-    { title: "NodeJS" },
-    { title: "ReactJS" },
-    { title: "Django" },
+    { title: "NodeJS", good: 0 },
+    { title: "ReactJS", good: 0 },
+    { title: "Django", good: 0 },
   ]);
 
-  글제목.forEach((key) => {
-    key.good = 0;
-    console.log(key);
-  });
+  // 글제목.forEach((key) => {
+  //   key.good = 0;
+  //   console.log(key);
+  // });
 
   console.log(글제목[0]);
 
@@ -69,18 +69,18 @@ function App() {
         );
       })} */}
 
-      {글제목.map((index) => {
+      {글제목.map((data, index) => {
         return (
           <div className="list">
             <h3>
-              {index.title}
+              {data.title}
               <span
                 onClick={() => {
-                  console.log(index);
-                  글제목변경(index.good + 1);
+                  console.log(글제목[index].good);
+                  // 글제목변경(index.good + 1);
                 }}
               >
-                👍{index.good}
+                👍{data.good}
               </span>
             </h3>
             <p>9월 22일 발행</p>
