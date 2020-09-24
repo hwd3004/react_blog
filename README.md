@@ -26,3 +26,20 @@ html이 새로고침 없이 스무스하게 변경됨.
 ---
 
 # 6. 따봉버튼 새로 만들기가 잘안되네...
+
+---
+
+# 7. props: 자식 컴포넌트가 부모 컴포넌트의 state 쓰는 방법
+
+{modal === true ? <Modal 작명={전송할 state} ></Modal> : null}
+
+let Modal = (props) => {
+return (
+<div className="modal">
+{(console.log("props"), console.log(props))}
+<h2>{props.글제목[0]}</h2>
+<p>날짜</p>
+<p>상세내용</p>
+</div>
+);
+};

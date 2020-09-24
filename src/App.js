@@ -3,31 +3,20 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  let [제목, 제목변경] = useState(["NodeJS", "ReactJS", "Django"]);
+  let [글제목, 글제목변경] = useState(["NodeJS", "ReactJS", "Django"]);
   let [따봉, 따봉변경] = useState(0);
-
-  let [글제목, 글제목변경] = useState([
-    { title: "NodeJS", good: 0 },
-    { title: "ReactJS", good: 0 },
-    { title: "Django", good: 0 },
-  ]);
-
-  // 글제목.forEach((key) => {
-  //   key.good = 0;
-  //   console.log(key);
-  // });
 
   console.log(글제목[0]);
 
   let [modal, modal변경] = useState(false);
 
-  let 모달버튼 = () => {
-    if (modal === false) {
-      modal변경(true);
-    } else {
-      modal변경(false);
-    }
-  };
+  // let 모달버튼 = () => {
+  //   if (modal === false) {
+  //     modal변경(true);
+  //   } else {
+  //     modal변경(false);
+  //   }
+  // };
 
   let 반복된UI = () => {
     let 어레이 = [];
@@ -43,44 +32,17 @@ function App() {
         <div>개발 Blog</div>
       </div>
 
-      {/* <div className="list">
-        <h3>
-          {제목[0]}
-          <span
-            onClick={() => {
-              따봉변경(따봉 + 1);
-            }}
-          >
-            👍
-          </span>
-          {따봉}
-        </h3>
-        <p>9월 22일 발행</p>
-        <hr />
-      </div> */}
-
-      {/* {제목.map((글index) => {
-        return (
-          <div className="list">
-            <h3> {글index} </h3>
-            <p>9월 22일 발행</p>
-            <hr />
-          </div>
-        );
-      })} */}
-
       {글제목.map((data, index) => {
         return (
           <div className="list">
             <h3>
-              {data.title}
+              {data}
               <span
                 onClick={() => {
-                  console.log(글제목[index].good);
-                  // 글제목변경(index.good + 1);
+                  console.log(글제목[index]);
                 }}
               >
-                👍{data.good}
+                👍{따봉}
               </span>
             </h3>
             <p>9월 22일 발행</p>
@@ -89,17 +51,25 @@ function App() {
         );
       })}
 
-      <button onClick={모달버튼}>버튼</button>
+      {/* <button onClick={모달버튼}>버튼</button> */}
+      <button
+        onClick={() => {
+          modal변경(!modal);
+        }}
+      >
+        버튼
+      </button>
 
-      {modal === true ? <Modal></Modal> : null}
+      {modal === true ? <Modal 글제목={글제목}></Modal> : null}
     </div>
   );
 }
 
-let Modal = () => {
+let Modal = (props) => {
   return (
     <div className="modal">
-      <h2>제목</h2>
+      {(console.log("props"), console.log(props))}
+      <h2>{props.글제목[0]}</h2>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
